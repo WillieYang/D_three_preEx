@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circle Dance</title>
+	<script type="text/javascript" src="../d3/d3.js"></script>
+</head>
+<body>
+	<svg width="720" height="120">
+		<circle cx="40" cy="60" r="10"></circle>
+		<circle cx="80" cy="60" r="10"></circle>
+		<circle cx="120" cy="60" r="10"></circle>
+	</svg>
+	<script type="text/javascript">
+		var circle = d3.selectAll("circle");
+		var dataset = [32, 57, 122];
+		circle.data(dataset);
+		circle.style("fill", "red");
+		circle.attr("r", 30);
+		circle.attr("cx", function(){return Math.random() * 720;});
+		circle.attr("r", function(d){return Math.sqrt(d);});
+		circle.attr("cx", function(d, i){return i*100+30});
+	</script>
+</body>
+</html>
