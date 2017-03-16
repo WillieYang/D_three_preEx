@@ -11,26 +11,20 @@
 		<circle cx="120" cy="60" r="10"></circle>
 	</svg>
 	<script type="text/javascript">
-		// var svg = d3.select("svg");
-
-		// var circle = svg.selectAll("circle")
-		//     .data([32, 57, 112, 293]);
-
-		// var circleEnter = circle.enter().append("circle");
-		// circleEnter.attr("cy", 60);
-		// circleEnter.attr("cx", function(d, i) { return i * 100 + 30; });
-		// circleEnter.attr("r", function(d) { return Math.sqrt(d); });
 
 		var svg = d3.select("svg");
 		var dataset = [32, 57, 122, 185];
 		var circle = svg.selectAll("circle")
 			.data(dataset).style("fill", "steelblue");
+
+		//var cricle = svg.selectAll("circle").data([32]).exit().remove();
+
 		var circleEnter = circle.enter().append("circle");
-		
 		circleEnter.style("fill", "steelblue");
 		circleEnter.attr("cy", 60);
 		circleEnter.attr("cx", function(d, i){return i*100+30});
 		circleEnter.attr("r", function(d){return Math.sqrt(d);});
+
 	</script>
 </body>
 </html>

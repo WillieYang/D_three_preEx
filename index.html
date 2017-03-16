@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>D3 Pate Template</title>
-	<script type="text/javascript" src="../d3/d3.js"></script>
+	<script src="../d3/d3.js"></script>
 	<style type="text/css">
 		div.bar{
 		display: inline-block;
@@ -11,29 +11,35 @@
 		height: 75px;
 		background-color: teal;}
 	</style>
+	<script>
+		function draw(data){
+			"use strict";
+			d3.select("body")
+			.append("ul")
+			.selectAll("li")
+			.data(data.rows)
+			.enter()
+			.append("li")
+			.text(function(d){
+				return d.name + ": " + d.status;
+			});	
+
+			d3.selectAll("li")
+			.style("font-weight", function(d){
+				if(d.status == "DELAYS") {
+					return "normal";
+				}else{
+					return "bold";
+				}
+			})
+		}
+	</script>
 </head>
 <body>
 	<h1>Hello World in D3</h1>
 	<div style="height: 75px"></div>
-	<script type="text/javascript">
-		var dataset = [12, 45, 87, 65, 45];
-
-		// d3.csv("../viz/data/serviceStatus1.csv", function(error, data){
-		// 	if(error){
-		// 		console.log(error);
-		// 	} else{
-		// 		console.log(data);}
-			dataset = data;	 
-	
-			d3.select("body").selectAll("div")
-			.data(dataset)
-			.enter()
-			.append("div")
-			.attr("class", "bar");
-			.style("height", function(d){
-				return d + "px";
-			});
-		// });
+	<script>
+		d3.json("../viz/data/serviceStatus2.json", draw);
 	</script>
 </body>
 </html>
