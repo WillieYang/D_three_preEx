@@ -32,7 +32,7 @@
 		    position: absolute;			
 		    text-align: center;			
 		    width: 200px;					
-		    height: 50px;					
+		    height: 150px;					
 		    padding: 2px;				
 		    font: 12px sans-serif;		
 		    background: lightsteelblue;	
@@ -48,12 +48,10 @@
 			var margin = 50,
 			width = 1500,
 			height = 700;
-			var x_extent = d3.extent(data, function(d){return d.CostVariancePercentage});
 			var x_scale = d3.scaleLinear()
 				.range([margin, width-margin])
 				.domain([-100, 100]);
 
-			var y_extent = d3.extent(data, function(d){return d.LifecycleCost});
 			var y_scale = d3.scaleLinear()
 				.range([height-margin, margin])
 				.domain([0, 100]);
@@ -80,7 +78,9 @@
 			  	div.transition()
 			  	   .duration(200)
 			  	   .style("opacity", 9);
-			  	div.html(d.ProjectName)
+			  	div.html("Project Name: "+"<br>"+d.ProjectName+"<br>"+
+			  			 "Life Cycle Cost: "+"<br>"+d.LifecycleCost+"($m)"+"<br>"+
+			  			 "Cost Variance Percentage: "+"<br>"+d.CostVariancePercentage+"%")
 			  	   .style("left", (d3.event.pageX) + "px")		
                    .style("top", (d3.event.pageY - 28) + "px");
 			    })
@@ -113,7 +113,7 @@
 			
 			d3.select(".y.axis")
 				.append("text")
-				.text("life cycle cost of each project in the dataset (M$)")
+				.text("life cycle cost of each project in the dataset ($m)")
 				.attr("transform", "rotate(-90, -40, 0) translate(-280)");
 			}
 	</script>
